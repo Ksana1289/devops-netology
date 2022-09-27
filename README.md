@@ -21,3 +21,5 @@
 Игнорировать все файлы .tfvars и .tfvars.json, которые могут содержать конфиденциальные данные
 Игнорировать файлы переопределения не зарегистрированые в override.tf, override.tf.json, *_override.tf и *_override.tf.json
 Игнорировать файлы конфигурации CLI .terraformrc и terraform.rc
+
+ветка fix
