@@ -59,7 +59,19 @@ ls /dev > list | grep -n 'tty*' list  | tee tty_list
 64:tty10
 65:tty11
 66:tty12
-…..
+……
+158:ttyprintk
+
+Решение:
+cat <tty_list >tty_list_out
+cat tty_list_out
+61:tty
+62:tty0
+63:tty1
+64:tty10
+65:tty11
+66:tty12
+……
 158:ttyprintk
 
 6.	Получится ли, находясь в графическом режиме, вывести данные из PTY в какой-либо из эмуляторов TTY? Сможете ли вы наблюдать выводимые данные?
