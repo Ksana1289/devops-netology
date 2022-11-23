@@ -1,13 +1,15 @@
-Домашнее задание к занятию "3.6. Компьютерные сети. Лекция 1"
-1.	Работа c HTTP через телнет.
+### Домашнее задание к занятию "3.6. Компьютерные сети. Лекция 1"
+#### 1.	Работа c HTTP через телнет.
 •	Подключитесь утилитой телнет к сайту stackoverflow.com telnet stackoverflow.com 80
 •	Отправьте HTTP запрос
+```shell
 GET /questions HTTP/1.0
 HOST: stackoverflow.com
 [press enter]
 [press enter]
+```
 •	В ответе укажите полученный HTTP код, что он означает?
-
+```shell
 HTTP/1.1 403 Forbidden
 Connection: close
 Content-Length: 1923
@@ -81,9 +83,10 @@ X-DNS-Prefetch-Control: off
         <script>document.getElementById('jslocation').innerHTML = window.location.href;</script>
 </body>
 </html>Connection closed by foreign host.
-Ошибка 403 Forbidden – это код состояния HTTP, который означает, что доступ к странице или ресурсу, по какой-то причине абсолютно запрещен.\
+```
+Ошибка 403 Forbidden – это код состояния HTTP, который означает, что доступ к странице или ресурсу, по какой-то причине абсолютно запрещен.
 
-2.	Повторите задание 1 в браузере, используя консоль разработчика F12.
+#### 2.	Повторите задание 1 в браузере, используя консоль разработчика F12.
 •	откройте вкладку Network
 •	отправьте запрос http://stackoverflow.com
 •	найдите первый ответ HTTP сервера, откройте вкладку Headers
@@ -93,23 +96,24 @@ X-DNS-Prefetch-Control: off
 
 stackoverflow.com работает по протоколу https.
 В ответ получили код 200 OK
- 
+ ![image](https://user-images.githubusercontent.com/75307275/203605167-e554d252-6c7c-46be-86a8-4ddf5705dbfe.png)
+
 Страница полностью загрузилась за 5.53 s. Самый долгий запрос - начальная загрузка страницы Request URL https://stackoverflow.com/ 389 ms
 
-3.	Какой IP адрес у вас в интернете?
-
+#### 3.	Какой IP адрес у вас в интернете?
+```shell
 dig @resolver4.opendns.com myip.opendns.com +short
 188.233.XX.XXX
-
-4.	Какому провайдеру принадлежит ваш IP адрес? Какой автономной системе AS? Воспользуйтесь утилитой whois
-
+```
+#### 4.	Какому провайдеру принадлежит ваш IP адрес? Какой автономной системе AS? Воспользуйтесь утилитой whois
+```shell
 whois 188.233.XX.XXX | grep netname
 netname:        BSKYB-BROADBAND
 whois 188.233.XX.XXX | grep origin
 origin:         AS5607
-
-5.	Через какие сети проходит пакет, отправленный с вашего компьютера на адрес 8.8.8.8? Через какие AS? Воспользуйтесь утилитой traceroute
-
+```
+#### 5.	Через какие сети проходит пакет, отправленный с вашего компьютера на адрес 8.8.8.8? Через какие AS? Воспользуйтесь утилитой traceroute
+```shell
 traceroute -An 8.8.8.8
 traceroute to 8.8.8.8 (8.8.8.8), 30 hops max, 60 byte packets
  1  192.168.1.1 [*]  14.486 ms  14.437 ms  14.075 ms
@@ -133,16 +137,16 @@ traceroute to 8.8.8.8 (8.8.8.8), 30 hops max, 60 byte packets
 19  * * *
 20  * * *
 21  8.8.8.8 [AS15169]  54.187 ms * *
-
+```
 Пакет проходит через AS - AS39435, AS15169
-
+```shell
 grep OrgName <(whois AS15169)
 OrgName:        Google LLC\
-
+```
 AS39435 не определяется
 
-6.	Повторите задание 5 в утилите mtr. На каком участке наибольшая задержка - delay?
-
+#### 6.	Повторите задание 5 в утилите mtr. На каком участке наибольшая задержка - delay?
+```shell
 mtr 8.8.8.8 -znrc 1
 Start: 2022-11-23T15:36:45+0000
 HOST: ubuntu-focal                Loss%   Snt   Last   Avg  Best  Wrst StDev
@@ -167,11 +171,11 @@ HOST: ubuntu-focal                Loss%   Snt   Last   Avg  Best  Wrst StDev
  19. AS???    ???                 100.0     1    0.0   0.0   0.0   0.0   0.0
  20. AS???    ???                 100.0     1    0.0   0.0   0.0   0.0   0.0
  21. AS15169  8.8.8.8              0.0%     1  261.6 261.6 261.6 261.6   0.0
-
+```
 Наибольшая задержка на 10 хопе
 
-7.	Какие DNS сервера отвечают за доменное имя dns.google? Какие A записи? Воспользуйтесь утилитой dig
-
+#### 7.	Какие DNS сервера отвечают за доменное имя dns.google? Какие A записи? Воспользуйтесь утилитой dig
+```shell
 dig +short NS dns.google
 ns2.zdns.google.
 ns3.zdns.google.
@@ -180,10 +184,10 @@ ns1.zdns.google.
 dig +short A dns.google
 8.8.8.8
 8.8.4.4
-
-8.	Проверьте PTR записи для IP адресов из задания 7. Какое доменное имя привязано к IP? Воспользуйтесь утилитой dig
-
+```
+#### 8.	Проверьте PTR записи для IP адресов из задания 7. Какое доменное имя привязано к IP? Воспользуйтесь утилитой dig
+```shell
 for ip in `dig +short A dns.google`; do dig -x $ip | grep ^[0-9].*in-addr; done
 8.8.8.8.in-addr.arpa.   6914    IN      PTR     dns.google.
-4.4.8.8.in-addr.arpa.   6913    IN      PTR     dns.google.
-
+4.4.8.8.in-addr.arpa.   6913    IN      PTR     dns.google.###
+```
