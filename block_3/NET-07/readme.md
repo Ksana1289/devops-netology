@@ -160,11 +160,11 @@ Hosts/Net: 62                    Class A
 #### 7.	Как проверить ARP таблицу в Linux, Windows? Как очистить ARP кеш полностью? Как из ARP таблицы удалить только один нужный IP?
 
 Для Linux: 
-ip neigh - проверить ARP таблицу
-sudo ip neigh flush all - очистить ARP таблицы
-sudo ip neigh delete <IP> dev <INTERFACE>  - удалить один хост из ARP таблицы
+###### ip neigh - проверить ARP таблицу
+###### sudo ip neigh flush all - очистить ARP таблицы
+###### sudo ip neigh delete <IP> dev <INTERFACE>  - удалить один хост из ARP таблицы
 
 Для Windows: 
-arp –a - проверить ARP таблицу
-arp -d - очистить ARP таблицы
-arp -d <IP> - удалить один хост из ARP таблицы
+###### arp –a - проверить ARP таблицу
+###### arp -d - очистить ARP таблицы
+###### arp -d <IP> - удалить один хост из ARP таблицы
