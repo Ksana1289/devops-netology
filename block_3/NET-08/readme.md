@@ -84,7 +84,7 @@ EOF
 
 systemctl restart systemd-networkd
 ```
-Добавление статического маршрута (рфботает до перезагрузки)
+Добавление статического маршрута (работает до перезагрузки)
 ```shell
 sudo ip route add 10.0.4.0/24 via 10.0.2.2
 RTNETLINK answers: File exists
