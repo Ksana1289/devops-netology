@@ -148,7 +148,7 @@ UNCONN   0        0          10.0.2.15%enp0s3:68            0.0.0.0:*       user
 68 порт использует DHCP для отправки сообщений клиентам.
 
 #### 5. Используя diagrams.net, создайте L3 диаграмму вашей домашней сети или любой другой сети, с которой вы работали.
- image.png
+ ![image](https://user-images.githubusercontent.com/75307275/208959380-4c0aef3b-706a-43b9-a4e6-0ef6601002c1.png)
 #### 6*. Установите Nginx, настройте в режиме балансировщика TCP или UDP.
 Создаем директорию для хоста
 ```shell
@@ -221,14 +221,14 @@ sudo nano /var/www/html/index.html
 ```shell
 <center><h1>Welcome to nginx!</h1></center>
 ```
-Вписываем туда NODE1.
+Вписываем туда node1.
 Делается это для того, чтобы было видно, какой сервер прислал ответ в данный момент.
 Повторяем на остальных нодах.
 
 Открываем браузер и переходим по адресу балансировщика.
 
- image.png
- image.png
+ ![image](https://user-images.githubusercontent.com/75307275/208959712-956f3e5a-ef1e-4698-82cd-5d5cf1b37087.png)
+ ![image](https://user-images.githubusercontent.com/75307275/208959748-9311abbe-eaf5-463a-8299-82627a02ec0a.png)
 
 #### 7*. Установите bird2, настройте динамический протокол маршрутизации RIP.
 #### 8*. Установите Netbox, создайте несколько IP префиксов, используя curl проверьте работу API.
@@ -288,4 +288,4 @@ http://192.168.1.22:8000/api/ipam/prefixes/ \
   "_depth": 0
 }
 ```
-image.png
+![image](https://user-images.githubusercontent.com/75307275/208959659-67ea4588-056f-4a5e-be0f-d4ec4ad5fe43.png)
