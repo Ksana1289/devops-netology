@@ -1,10 +1,12 @@
-Домашнее задание к занятию "3.9. Элементы безопасности информационных систем"
-1. Установите Bitwarden плагин для браузера. Зарегистрируйтесь и сохраните несколько паролей.
+### Домашнее задание к занятию "3.9. Элементы безопасности информационных систем"
+#### 1. Установите Bitwarden плагин для браузера. Зарегистрируйтесь и сохраните несколько паролей.
+![image](https://user-images.githubusercontent.com/75307275/209523497-bf4d4b0d-260a-4d66-8c80-7148f006393a.png)
   
-2. Установите Google authenticator на мобильный телефон. Настройте вход в Bitwarden аккаунт через Google authenticator OTP.
-  
-3. Установите apache2, сгенерируйте самоподписанный сертификат, настройте тестовый сайт для работы по HTTPS.
+#### 2. Установите Google authenticator на мобильный телефон. Настройте вход в Bitwarden аккаунт через Google authenticator OTP.
+ ![image](https://user-images.githubusercontent.com/75307275/209523526-db476cf5-02b3-4296-b4d7-726a0d899397.png)
 
+#### 3. Установите apache2, сгенерируйте самоподписанный сертификат, настройте тестовый сайт для работы по HTTPS.
+```shell
 sudo apt install apache2
 sudo a2enmod ssl
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \-keyout /etc/ssl/private/apache-selfsigned.key \-out /etc/ssl/certs/apache-selfsigned.crt \-subj "/C=RU/ST=Moscow/L=Moscow/O=Company Name/OU=Org/CN=www. site-dev.local"
@@ -54,10 +56,11 @@ a2ensite site-dev-ssl.conf
 apache2 -t
 systemctl reload apache2
 systemctl status apache2
-image.png
+```
+![image](https://user-images.githubusercontent.com/75307275/209523666-7c954cd3-3b56-415c-be15-45e445df1cc5.png)
  
-4. Проверьте на TLS уязвимости произвольный сайт в интернете.
-
+#### 4. Проверьте на TLS уязвимости произвольный сайт в интернете.
+```shell
 git clone https://github.com/drwetter/testssl.sh.git
 ./testssl.sh -e --fast --parallel https://www.google.com/
 
@@ -87,10 +90,7 @@ Testing all IPv4 addresses (port 443): 209.85.233.105 209.85.233.103 209.85.233.
  rDNS (209.85.233.105):  lr-in-f105.1e100.net.
  Service detected:       HTTP
 
-
-
  Testing all 183 locally available ciphers against the server, ordered by encryption strength
-
 
 Hexcode  Cipher Suite Name (OpenSSL)       KeyExch.   Encryption  Bits     Cipher Suite Name (IANA/RFC)
 -----------------------------------------------------------------------------------------------------------------------------
@@ -108,11 +108,10 @@ Hexcode  Cipher Suite Name (OpenSSL)       KeyExch.   Encryption  Bits     Ciphe
  x2f     AES128-SHA                        RSA        AES         128      TLS_RSA_WITH_AES_128_CBC_SHA
  x0a     DES-CBC3-SHA                      RSA        3DES        168      TLS_RSA_WITH_3DES_EDE_CBC_SHA
 
-
  Done 2022-12-23 12:41:49 [   8s] -->> 209.85.233.105:443 (www.google.com) <<--
-
-
-5. Установите на Ubuntu ssh сервер, сгенерируйте новый приватный ключ. Скопируйте свой публичный ключ на другой сервер. Подключитесь к серверу по SSH-ключу.
+```
+#### 5. Установите на Ubuntu ssh сервер, сгенерируйте новый приватный ключ. Скопируйте свой публичный ключ на другой сервер. Подключитесь к серверу по SSH-ключу.
+```shell
 ssh-keygen
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/ksana/.ssh/id_rsa):
@@ -139,7 +138,9 @@ ssh ksana@192.168.1.42
 Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.4.0-135-generic x86_64)
 ………………
 ksana@ng-web2:~$
-6. Переименуйте файлы ключей из задания 5. Настройте файл конфигурации SSH клиента, так чтобы вход на удаленный сервер осуществлялся по имени сервера.
+```
+#### 6. Переименуйте файлы ключей из задания 5. Настройте файл конфигурации SSH клиента, так чтобы вход на удаленный сервер осуществлялся по имени сервера.
+```shell
 mv ~/.ssh/id_rsa ~/.ssh/id_rsa_web2
 mv ~/.ssh/id_rsa.pub ~/.ssh/id_rsa_web2.pub
 nano ~/.ssh/config
@@ -152,7 +153,9 @@ ssh ng-web2
 Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.4.0-135-generic x86_64)
 ………………
 ksana@ng-web2:~$
-7. Соберите дамп трафика утилитой tcpdump в формате pcap, 100 пакетов. Откройте файл pcap в Wireshark.
+```
+#### 7. Соберите дамп трафика утилитой tcpdump в формате pcap, 100 пакетов. Откройте файл pcap в Wireshark.
+```shell
 sudo tcpdump -c 5 -i ens33 port 22 -w ssh.pcap
 tcpdump: listening on ens33, link-type EN10MB (Ethernet), capture size 262144 bytes
 5 packets captured
@@ -162,10 +165,11 @@ tcpdump: listening on ens33, link-type EN10MB (Ethernet), capture size 262144 by
 sudo apt install wireshark
 sudo usermod -aG wireshark ksana
 wireshark
- image.png
+```
+![image](https://user-images.githubusercontent.com/75307275/209524034-dfb122d9-7201-4cee-aad8-5b05d350a4f9.png)
 
-8*. Просканируйте хост scanme.nmap.org. Какие сервисы запущены?
-
+#### 8*. Просканируйте хост scanme.nmap.org. Какие сервисы запущены?
+```shell
 nmap scanme.nmap.org
 Starting Nmap 7.80 ( https://nmap.org ) at 2022-12-26 07:40 UTC
 Nmap scan report for scanme.nmap.org (45.33.32.156)
@@ -180,11 +184,11 @@ PORT      STATE    SERVICE
 445/tcp   filtered microsoft-ds
 9929/tcp  open     nping-echo
 31337/tcp open     Elite
-
+```
 Cервисы ssh, http, nping-echo, Elite.
 
-9*. Установите и настройте фаервол ufw на web-сервер из задания 3. Откройте доступ снаружи только к портам 22,80,443
-
+#### 9*. Установите и настройте фаервол ufw на web-сервер из задания 3. Откройте доступ снаружи только к портам 22,80,443
+```shell
 sudo ufw enable 
 sudo ufw status verbose
 
@@ -217,3 +221,4 @@ To                         Action      From
 443/tcp (v6)               ALLOW IN    Anywhere (v6)
 80/tcp (v6)                ALLOW IN    Anywhere (v6)
 22/tcp (v6)                ALLOW IN    Anywhere (v6)
+```
