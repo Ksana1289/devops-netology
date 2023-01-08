@@ -109,7 +109,7 @@ cmd2 = 'ping -c 1 mail.google.com'
 cmd3 = 'ping -c 1 google.com'
 cmd_list = (cmd1, cmd2, cmd3)
 
-list = []
+dict = {}
 
 for cmd in cmd_list:
     output = os.popen(cmd, 'r')
@@ -117,32 +117,30 @@ for cmd in cmd_list:
         if line.find('PING') != -1:
             urll = re.findall('PING \S*', line)
             url = urll[0].replace('PING ', '')
-            ipl = re.findall ('\d*[.]\d*[.]\d*[.]\d*', line)
-            print(url, ' - ', ipl[0])
-            list.append([url, ipl[0]])
+            ip = re.findall ('\d*[.]\d*[.]\d*[.]\d*', line)
+            print(url, ' - ', ip[0])
+            dict[url]=ip[0]
 
 condition  = input("Напишите <+> если требуется проверка новых IP адресов: ")
 
 if condition == '+':
     with open ('./4.txt', 'r') as file:
-        mas = file.readlines()
-        for line in list:
-            for mass in mas:
-                mk = mass.split(" ")
-                if mk[0] == line[0]:
-                    if mk[1].find(line[1]) != 0:
-                        print('[ERROR] ' + line[0] + ' IP mismatch: ' + mk[1].replace('\n', '') + ' ' + line[1])
+        lines = file.read().splitlines()
+    for line in lines:
+        key,value = line.split(' ')
+        if value not in dict[key]:
+            print(f'[ERROR] {key} IP mismatch: {value} {dict[key]}')
 
 with open('./4.txt', 'w') as file:
-    for line in list:
-        file.write(line[0] + ' ' + line [1] + '\n')
+    for key,value in dict.items():
+        file.write(f'{key} {value}\n')
 ```
 ```shell
 ksana@apache:~/python$ ./4.sh
 wide-docs.l.google.com  -  173.194.222.194
-mail.google.com  -  64.233.164.19
-google.com  -  64.233.164.100
+mail.google.com  -  64.233.165.17
+google.com  -  74.125.131.102
 Напишите <+> если требуется проверка новых IP адресов: +
-[ERROR] mail.google.com IP mismatch: 108.177.14.83 64.233.164.19
-[ERROR] google.com IP mismatch: 173.194.222.100 64.233.164.100
+[ERROR] mail.google.com IP mismatch: 64.233.165.18 64.233.165.17
+[ERROR] google.com IP mismatch: 74.125.131.113 74.125.131.102
 ```
