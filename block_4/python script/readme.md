@@ -101,25 +101,22 @@ ksana@apache:~/python$ ./3.sh
 ```shell
 #!/usr/bin/env python3
 
-import os
 import re
+from sh import ping
 
-cmd1 = 'ping -c 1 drive.google.com'
-cmd2 = 'ping -c 1 mail.google.com'
-cmd3 = 'ping -c 1 google.com'
-cmd_list = (cmd1, cmd2, cmd3)
+url_list = ('drive.google.com', 'mail.google.com', 'google.com')
 
-dict = {}
+results_for_ping = {}
 
-for cmd in cmd_list:
-    output = os.popen(cmd, 'r')
+for url in url_list:
+    output = ping("-c", 1, url)
     for line in output:
         if line.find('PING') != -1:
             urll = re.findall('PING \S*', line)
             url = urll[0].replace('PING ', '')
             ip = re.findall ('\d*[.]\d*[.]\d*[.]\d*', line)
             print(url, ' - ', ip[0])
-            dict[url]=ip[0]
+            results_for_ping[url]=ip[0]
 
 condition  = input("Напишите <+> если требуется проверка новых IP адресов: ")
 
@@ -128,19 +125,19 @@ if condition == '+':
         lines = file.read().splitlines()
     for line in lines:
         key,value = line.split(' ')
-        if value not in dict[key]:
-            print(f'[ERROR] {key} IP mismatch: {value} {dict[key]}')
+        if value not in results_for_ping[key]:
+            print(f'[ERROR] {key} IP mismatch: {value} {results_for_ping[key]}')
 
 with open('./4.txt', 'w') as file:
-    for key,value in dict.items():
-        file.write(f'{key} {value}\n')
+    for key,value in results_for_ping.items():
+        file.write(f'{key} {value}\n'))
 ```
 ```shell
 ksana@apache:~/python$ ./4.sh
 wide-docs.l.google.com  -  173.194.222.194
-mail.google.com  -  64.233.165.17
-google.com  -  74.125.131.102
+mail.google.com  -  64.233.161.17
+google.com  -  173.194.73.102
 Напишите <+> если требуется проверка новых IP адресов: +
-[ERROR] mail.google.com IP mismatch: 64.233.165.18 64.233.165.17
-[ERROR] google.com IP mismatch: 74.125.131.113 74.125.131.102
+[ERROR] mail.google.com IP mismatch: 64.233.163.19 64.233.161.17
+[ERROR] google.com IP mismatch: 173.194.73.100 173.194.73.102
 ```
