@@ -1,0 +1,2 @@
+[sait]
+nginx-web-2 ansible_ssh_host=192.168.1.42

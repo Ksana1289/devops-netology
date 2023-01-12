@@ -1,0 +1,25 @@
+---
+- name: 'Playbook'
+  hosts: sait
+  become: yes
+  become_user: root
+  remote_user: ksana
+
+  tasks:
+    - name: Installing tools
+      apt:
+        package: "{{ item }}"
+        state: present
+        update_cache: yes
+      with_items:
+        - git
+        - curl
+
+    - name: Installing docker
+      shell: curl -fsSL get.docker.com -o get-docker.sh && chmod +x get-docker.sh && ./get-docker.sh
+
+    - name: Add the current user to docker group
+      user:
+        name: ksana
+        append: yes
+        groups: docker
