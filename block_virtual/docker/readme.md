@@ -88,7 +88,7 @@ total 8
 ```shell
 docker build -t ksana89roza/ansible-dev:2.9.24 .
 ```
-При сборке контейнера выходит ошибкам
+При сборке контейнера выходит ошибка
 COPY failed: file not found in build context or excluded by .dockerignore: stat ansible.cfg: file does not exist
  
 Закоментировала строку dockerfile
