@@ -31,7 +31,7 @@ curl http://localhost:8081
 <html><head>Hey, Netology</head><body><h1>I’m DevOps Engineer!</h1></body></html>
 docker push ksana89roza/nginx-task-1:1
 ```
-Ссылка на образ https://hub.docker.com/layers/ksana89roza/nginx-task-1/1/images/sha256-f2acb16831185cb091141e0a2f6055d87308e32e00d762521c9fb8a81a7c32b7?context=repo
+[Ссылка на образ nginx](https://hub.docker.com/layers/ksana89roza/nginx-task-1/1/images/sha256-f2acb16831185cb091141e0a2f6055d87308e32e00d762521c9fb8a81a7c32b7?context=repo)
 #### Задача 2 Посмотрите на сценарий ниже и ответьте на вопрос: "Подходит ли в этом сценарии использование Docker контейнеров или лучше подойдет виртуальная машина, физическая машина? Может быть возможны разные варианты?" Детально опишите и обоснуйте свой выбор.
 --
 ##### Сценарий:
@@ -110,4 +110,4 @@ ansible-playbook [core 2.14.1]
 ```shell
 docker push ksana89roza/ansible-dev:2.9.24
 ```
-Ссылка на образ https://hub.docker.com/layers/ksana89roza/ansible-dev/2.9.24/images/sha256-a6b73c5f77ba750e65bf35f98591791aeaeb8479e92774c9d1638976d9d275d5?context=repo
+[Ссылка на образ ansible](https://hub.docker.com/layers/ksana89roza/ansible-dev/2.9.24/images/sha256-a6b73c5f77ba750e65bf35f98591791aeaeb8479e92774c9d1638976d9d275d5?context=repo)
