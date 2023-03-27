@@ -3,6 +3,7 @@
 #### Задача 1 Используя docker поднимите инстанс PostgreSQL (версию 12) c 2 volume, в который будут складываться данные БД и бэкапы. Приведите получившуюся команду или docker-compose манифест.
 
 #### docker-compose.yml:
+```shell
 version: '3.6'
 
 volumes:
@@ -24,12 +25,14 @@ services:
       POSTGRES_PASSWORD: "admin"
       POSTGRES_DB: "test_db"
     restart: always
+```
+```shell
 docker-compose up -d
 docker exec -it psql bash
 export PGPASSWORD=admin && psql -h localhost -U test-admin-user test_db
 psql (12.10 (Debian 12.10-1.pgdg110+1))
 Type "help" for help.
-
+```
 
 #### Задача 2 В БД из задачи 1:
 ##### •	создайте пользователя test-admin-user и БД test_db
