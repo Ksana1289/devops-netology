@@ -1,6 +1,6 @@
 ### Домашнее задание к занятию "6.4. PostgreSQL"
 
-#### Задача 1Используя docker поднимите инстанс PostgreSQL (версию 13). Данные БД сохраните в volume.
+#### Задача 1 Используя docker поднимите инстанс PostgreSQL (версию 13). Данные БД сохраните в volume.
 ```shell
 docker run --rm --name postgresql-docker \
     -e POSTGRES_PASSWORD=admin \
