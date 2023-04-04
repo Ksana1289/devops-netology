@@ -173,10 +173,10 @@ SHOW PROFILES;
 #### Приведите в ответе измененный файл my.cnf.
 ```shell
 echo "innodb_flush_log_at_trx_commit = 0
-innodb_file_per_table = ON
-innodb_log_buffer_size = 1M
-innodb_buffer_pool_size = 2G
-innodb_log_file_size = 100M">> /etc/my.cnf
+    ->     innodb_file_per_table = ON
+    ->     innodb_log_buffer_size = 1M
+    ->     innodb_buffer_pool_size = 2G
+    ->     innodb_log_file_size = 100M">> /etc/my.cnf
 ```
 ```shell
 cat /etc/my.cnf
