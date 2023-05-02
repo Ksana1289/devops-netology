@@ -18,6 +18,10 @@ This system is not registered with an entitlement server. You can use subscripti
 adding repo from: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 grabbing file https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo to /etc/yum.repos.d/hashicorp.repo
 Could not fetch/save url https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo to file /etc/yum.repos.d/hashicorp.repo: [Errno 14] HTTPS Error 404 - Not Found
+
+при скачивании бинарника через зеркало
+[root@serv1 ~]# terraform --version
+-bash: /usr/local/sbin/terraform: не могу запустить бинарный файл
 ```
 ________________________________________
 #### Задание 1
