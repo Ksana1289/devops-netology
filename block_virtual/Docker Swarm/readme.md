@@ -25,8 +25,10 @@
 ```shell
 docker node ls
 ```
+![image](https://user-images.githubusercontent.com/75307275/236690697-d9982ed4-082d-4f51-92db-f9c15624ad8f.png)
  
 #### Задача 3 Создайте ваш первый, готовый к боевой эксплуатации кластер мониторинга, состоящий из стека микросервисов. Чтобы получить зачёт, предоставьте скриншот из терминала (консоли), с выводом команды:
 ```shell
 docker service ls
 ```
+![image](https://user-images.githubusercontent.com/75307275/236690714-c26f7509-92e6-4d8d-9f7f-2b6be403868a.png)
